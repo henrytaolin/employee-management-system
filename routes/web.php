@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::get('admin', [AdminController::class, 'index']);
 Route::get('admin/login', [AdminController::class, 'login']);
+Route::post('admin/login', [AdminController::class, 'submit_login']);
