@@ -30,10 +30,17 @@ class AdminController extends Controller
         ]);
         $checkAdmin=Admin::where(['username'=>$request->username,'password'=>$request->password])->count();
         if($checkAdmin > 0) {
+            session(['adminLogin', true]);
             return redirect('admin');
         } else {
-            return redirect('/');
+            return redirect('admin/login')->with('msg', 'Invalid username/password');
         }
+    }
+
+    public function logout()
+    {
+        session()->forget('adminLogin');
+        return redirect('admin/login');
     }
 
     /**
